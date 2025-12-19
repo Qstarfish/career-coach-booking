@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.careercoach.careercoachbooking.mapper.BookingMapper">
+
+    <resultMap id="BaseResultMap" type="com.careercoach.careercoachbooking.entity.Booking">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="cal_booking_id" property="calBookingId"/>
+        <result column="coach_name" property="coachName"/>
+        <result column="coach_email" property="coachEmail"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="status" property="status"/>
+        <result column="cal_event_type_id" property="calEventTypeId"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="booking_uid" property="bookingUid"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO booking (user_id, cal_booking_id, coach_name, coach_email, start_time, end_time, status, cal_event_type_id,booking_uid)
+        VALUES (#{userId}, #{calBookingId}, #{coachName}, #{coachEmail}, #{startTime}, #{endTime}, #{status}, #{calEventTypeId}, #{bookingUid})
+    </insert>
+
+    <update id="update">
+        UPDATE booking
+        SET cal_booking_id = #{calBookingId},
+            coach_name = #{coachName},
+            coach_email = #{coachEmail},
+            start_time = #{startTime},
+            end_time = #{endTime},
+            status = #{status},
+            cal_event_type_id = #{calEventTypeId}
+        WHERE id = #{id}
+    </update>
+
+    <select id="findByCalBookingId" resultMap="BaseResultMap">
+        SELECT id, user_id, cal_booking_id, coach_name, coach_email, start_time, end_time, status, cal_event_type_id, created_at, updated_at, booking_uid
+        FROM booking
+        WHERE cal_booking_id = #{calBookingId}
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT id, user_id, cal_booking_id, coach_name, coach_email, start_time, end_time, status, cal_event_type_id, created_at, updated_at
+        FROM booking
+        WHERE user_id = #{userId}
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT id, user_id, cal_booking_id, coach_name, coach_email, start_time, end_time, status, cal_event_type_id, created_at, updated_at
+        FROM booking
+        WHERE id = #{id}
+    </select>
+
+</mapper>
+

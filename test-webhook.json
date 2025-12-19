@@ -1,0 +1,23 @@
+{
+  "triggerEvent": "BOOKING_CREATED",
+  "createdAt": "2023-05-24T09:30:00.538Z",
+  "payload": {
+    "type": "30min",
+    "title": "30min between Coach and Test User",
+    "startTime": "2023-05-25T09:30:00Z",
+    "endTime": "2023-05-25T10:00:00Z",
+    "organizer": {
+      "name": "Coach Name",
+      "email": "coach@example.com"
+    },
+    "attendees": [
+      {
+        "name": "Test User",
+        "email": "test@example.com"
+      }
+    ],
+    "uid": "bFJeNb2uX8ANpT3JL5EfXw",
+    "bookingId": 91,
+    "status": "ACCEPTED"
+  }
+}
